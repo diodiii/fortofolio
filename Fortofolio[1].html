@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portofolio - Diopedia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <style>
+    /* Reset & base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #000000;
+      color: #ff0000;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    a {
+      color: #ff0000;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+    a:hover,
+    a:focus {
+      color: #ff4d4d;
+      outline: none;
+    }
+
+    /* Glow animation for Diopedia text */
+    @keyframes glow {
+      1%, 5% {
+        text-shadow:
+          0 0 5px #ff0000,
+          0 0 10px #ff1a1a,
+          0 0 15px #ff3333,
+          0 0 20px #ff4d4d,
+          0 0 25px #ff6666;
+      }
+      0% {
+        text-shadow:
+          0 0 10px #ff4d4d,
+          0 0 20px #ff6666,
+          0 0 30px #ff8080,
+          0 0 40px #ff9999,
+          0 0 50px #ffb3b3;
+      }
+    }
+
+    /* Smooth glow on tap/click/focus */
+    .glow-on-touch {
+      transition: box-shadow 0.4s ease, color 0.4s ease;
+      cursor: pointer;
+      display: inline-block;
+      border-radius: 6px;
+      outline-offset: 3px;
+      outline: none;
+    }
+    .glow-on-touch:focus-visible,
+    .glow-on-touch:hover {
+      box-shadow:
+      0 0 10px #fff,
+      0 0 20px #fff;
+      color: #fff;
+    }
+    /* For touch devices (simulate glow on tap) */
+    .glow-on-touch.active {
+      box-shadow:
+      0 0 20px #fff,
+      0 0 30px #fff,
+      0 0 40px #fff;
+      color:  !important;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 32px auto;
+      padding: 0 16px;
+      width: 100%;
+    }
+
+    /* Header */
+    header {
+      background-color: #111111;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(255,0,0,0.3);
+    }
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color:	#FF0000;
+      animation: glow 3s ease-in-out infinite;
+      user-select: none;
+      padding: 4px 8px;
+      border-radius: 8px;
+      cursor: default;
+    }
+    nav {
+      display: flex;
+      gap: 24px;
+    }
+    nav a {
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 6px 10px;
+      border-radius: 6px;
+      user-select: none;
+    }
+    nav a:hover,
+    nav a:focus {
+      background-color: #330000;
+      color: #ff4d4d;
+    }
+
+    /* Main content */
+    main {
+      flex-grow: 1;
+      color: #ff0000;
+    }
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    section {
+      margin-bottom: 48px;
+      background-color: #1a1a1a;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow:
+        0 0 10px rgba(255, 0, 0, 0.15);
+    }
+    section h2 {
+      margin-top: 0;
+      margin-bottom: 16px;
+      font-size: 1.5rem;
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 24px;
+    }
+    .project-card {
+      background-color: #000000;
+      border: 1px solid #440000;
+      padding: 16px;
+      border-radius: 10px;
+      box-shadow: 0 0 6px rgba(255,0,0,0.3);
+      transition: box-shadow 0.3s ease;
+    }
+    .project-card:hover,
+    .project-card:focus-within {
+      box-shadow: 0 0 20px #fff;
+      outline: none;
+    }
+    .project-title {
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .project-desc {
+      font-size: 0.9rem;
+      color: #ff6666;
+    }
+
+    /* Contact */
+    .contact-info {
+      font-size: 1.1rem;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #111111;
+      color: #ff0000;
+      text-align: center;
+      padding: 16px 0;
+      font-size: 0.9rem;
+      box-shadow: inset 0 1px 0 #550000;
+      user-select: none;
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 767px) {
+      nav {
+        gap: 16px;
+      }
+      .container {
+        margin: 24px auto;
+        padding: 0 12px;
+      }
+      .logo {
+        font-size: 1.5rem;
+      }
+      h1 {
+        font-size: 1.6rem;
+      }
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (min-width: 768px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header role="banner">
+    <div class="header-content container">
+      <div class="logo glow-on-touch" tabindex="0" aria-label="Logo Diopedia">Diopedia</div>
+      <nav role="navigation" aria-label="Primary navigation">
+        <a href="#about" class="glow-on-touch" tabindex="0"><span class="material-icons" aria-hidden="true" style="vertical-align:middle;">person</span> Tentang</a>
+        <a href="#projects" class="glow-on-touch" tabindex="0"><span class="material-icons" aria-hidden="true" style="vertical-align:middle;">code</span> Proyek</a>
+        <a href="#contact" class="glow-on-touch" tabindex="0"><span class="material-icons" aria-hidden="true" style="vertical-align:middle;">phone</span> Kontak</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <section id="about" tabindex="0" aria-label="Tentang Diopedia">
+        <h1>Halo, saya <span class="glow-on-touch" style="font-weight:700;">Dio Fathurohim Dwitama</span></h1>
+        <p>Saya seorang pengembang web dengan semangat membangun hal-hal keren dan fungsional.</p>
+      </section>
+
+      <section id="projects" tabindex="0" aria-label="Proyek Terbaru Diopedia">
+        <h2>Proyek Terbaru</h2>
+        <div class="projects-grid">
+          <article class="project-card glow-on-touch" tabindex="0">
+            <h3 class="project-title">Proyek 1</h3>
+            <p class="project-desc">Aplikasi catatan berbasis web dengan fitur penyimpanan lokal.</p>
+          </article>
+          <article class="project-card glow-on-touch" tabindex="0">
+            <h3 class="project-title">Proyek 2</h3>
+            <p class="project-desc">Website portofolio responsif dengan animasi dan desain modern.</p>
+          </article>
+          <article class="project-card glow-on-touch" tabindex="0">
+            <h3 class="project-title">Proyek 3</h3>
+            <p class="project-desc">Sistem manajemen tugas sederhana berbasis JavaScript.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact" tabindex="0" aria-label="Kontak Diopedia" class="contact-info">
+        <h2>Kontak</h2>
+        <p>Kamu bisa menghubungi saya melalui nomor telepon <a href="tel:+6289531072103" class="glow-on-touch">+6289531072103</a>.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer role="contentinfo">
+    <div class="container" aria-label="Informasi hak cipta">
+      <p>© 2025 Diopedia. Semua Hak Dilindungi.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Add smooth glow effect on touch/click for .glow-on-touch elements
+    const glowElements = document.querySelectorAll('.glow-on-touch');
+
+    glowElements.forEach(el => {
+      el.addEventListener('touchstart', () => {
+        el.classList.add('active');
+      });
+      el.addEventListener('touchend', () => {
+        setTimeout(() => el.classList.remove('active'), 400);
+      });
+      el.addEventListener('mousedown', () => {
+        el.classList.add('active');
+      });
+      el.addEventListener('mouseup', () => {
+        setTimeout(() => el.classList.remove('active'), 400);
+      });
+      el.addEventListener('mouseleave', () => {
+        el.classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>
+
